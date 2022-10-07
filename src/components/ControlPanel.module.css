@@ -1,0 +1,10 @@
+.container{
+    display: flex;
+    margin: 10px auto;
+    background-color: #282c34;
+    width: 200px;
+    border: 2px solid dodgerblue;
+    padding: 5px;
+    border-radius: 5px;
+    justify-content: center;
+}
