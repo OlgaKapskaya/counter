@@ -7,10 +7,19 @@
     align-items: center;
     padding: 5px;
 }
+.containerEnd{
+    margin: 10px auto;
+    background-color: #B73E3E;
+    width: 200px;
+    border: 2px solid #282c34;
+    border-radius: 5px;
+    align-items: center;
+    padding: 5px;
+}
 .title{
     text-align: center;
     color: #282c34;
 }
 .titleEnd{
-    color: #B73E3E;
+    color: white;
 }

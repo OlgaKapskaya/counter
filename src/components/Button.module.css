@@ -6,6 +6,7 @@
     margin: 5px;
     border: none;
     font-size: 14px;
+    font-weight: bold;
 }
 .button:hover{
     width: 80px;
@@ -14,6 +15,7 @@
     border-radius: 5px;
     margin: 5px;
     border: none;
+    font-weight: bold;
 }
 .button:disabled{
     width: 80px;
@@ -21,4 +23,5 @@
     background-color: #282c34;
     color: dodgerblue;
     border: 1px solid dodgerblue;
+    font-weight: bold;
 }
