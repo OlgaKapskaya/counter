@@ -1,7 +1,7 @@
 .container{
     margin: 10px auto;
     background-color: dodgerblue;
-    width: 200px;
+    /*width: 300px;*/
     border: 2px solid #282c34;
     border-radius: 5px;
     align-items: center;
@@ -10,7 +10,6 @@
 .containerEnd{
     margin: 10px auto;
     background-color: #B73E3E;
-    width: 200px;
     border: 2px solid #282c34;
     border-radius: 5px;
     align-items: center;

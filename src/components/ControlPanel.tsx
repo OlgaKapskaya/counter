@@ -7,22 +7,15 @@ type ControlPanel = {
     resetCounter: () => void
     deleteCounter: () => void
     count: number
+    max: number
+    min: number
 }
 export const ControlPanel = (props: ControlPanel) => {
-    const incButtonHandler = () => {
-        props.incCounter()
-    }
-    const resetButtonHandler = () => {
-        props.resetCounter()
-    }
-    const delCounter = () => {
-        props.deleteCounter()
-    }
     return (
         <div className={s.container}>
-            <Button name={'ADD'} callback={incButtonHandler} disabled={props.count >= 5}/>
-            <Button name={'SUB'} callback={delCounter} disabled={props.count === 0}/>
-            <Button name={'RESET'} callback={resetButtonHandler} disabled={props.count === 0}/>
+            <Button name={'ADD'} callback={props.incCounter} disabled={props.count === props.max}/>
+            <Button name={'SUB'} callback={props.deleteCounter} disabled={props.count === props.min}/>
+            <Button name={'RESET'} callback={props.resetCounter} disabled={props.count === props.min}/>
         </div>
     )
 }

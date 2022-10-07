@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px auto;
+    border-radius: 5px;
+    padding: 5px 15px 5px 15px;
+    background-color: dodgerblue;
+    border: 2px solid #282c34;
+}
+.input{
+    background-color: #282c34;
+    width: 200px;
+    color: white;
+    padding: 5px;
+    border-radius: 1px;
+    font-weight: bold;
+}

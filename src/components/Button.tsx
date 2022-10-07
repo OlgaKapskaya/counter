@@ -11,6 +11,12 @@ export const Button = (props: ButtonProps) => {
         props.callback()
     }
     return (
-        <button disabled={props.disabled} className={s.button} onClick={onClickHandler}> { props.name } </button>
+        <button
+            disabled={props.disabled}
+            className={s.button}
+            onClick={onClickHandler}>
+
+            { props.name }
+        </button>
     )
 }
