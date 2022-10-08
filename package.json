@@ -1,6 +1,6 @@
 {
   "name": "counter",
-  "homepage": "OlgaKapskaya.github.io/counter",
+  "homepage": "https://OlgaKapskaya.github.io/counter",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,6 +12,7 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "gh-pages": "^4.0.0",
+    "gh-pages-deploy": "^0.5.1",
     "luxon": "^3.0.4",
     "react": "^18.2.0",
     "react-datetime": "^3.1.1",
