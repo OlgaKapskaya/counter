@@ -11,8 +11,12 @@
 .input{
     background-color: #282c34;
     width: 200px;
-    color: white;
-    padding: 5px;
-    border-radius: 1px;
+    color: dodgerblue;
+    padding: 5px 5px 5px 10px;
     font-weight: bold;
+    border: none;
+    border-radius: 5px;
+}
+.input::-webkit-outer-spin-button, input::-webkit-inner-spin-button{
+
 }

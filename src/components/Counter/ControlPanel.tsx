@@ -1,5 +1,5 @@
 import React from "react";
-import {Button} from "./Button";
+import {Button} from "../Button";
 import s from './ControlPanel.module.css'
 
 type ControlPanel = {

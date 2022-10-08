@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useState} from "react";
 import s from './SettingsCounter.module.css'
-import {Button} from "./Button";
+import {Button} from "../Button";
 
 type SettingsCounterProps = {
     start: number
