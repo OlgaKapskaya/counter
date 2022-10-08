@@ -1,0 +1,33 @@
+.timer{
+    margin: 10px auto;
+    border-radius: 5px;
+    padding: 5px 15px 5px 15px;
+    background-color: #282c34;
+    width: max-content;
+    border: 2px solid dodgerblue;
+}
+.display{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+}
+.time{
+    color: dodgerblue;
+}
+.ControlPanel{
+    display: flex;
+}
+.settings{
+    display: flex;
+    flex-direction: column;
+    color: dodgerblue;
+}
+.input{
+    background-color: #282c34;
+    color: dodgerblue;
+    padding: 5px 5px 5px 10px;
+    font-weight: bold;
+    border: 1px solid dodgerblue;
+    border-radius: 5px;
+}
