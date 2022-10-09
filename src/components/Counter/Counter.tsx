@@ -5,37 +5,54 @@ import s from './Counter.module.css'
 import {SettingsCounter} from "./SettingsCounter";
 import {Button} from "../Button";
 
-
+export type StorageType = {
+    START_VALUE: number
+    MAX_VALUE: number
+    STEP: number
+}
 export const Counter = () => {
 
-    const [storage, setStorage] = useState({
+    const [storage, setStorage] = useState<StorageType>({
         START_VALUE: 0,
         MAX_VALUE: 5,
         STEP: 1
     })
-
-    const [settings, setSettings] = useState<'on' | 'off'>('on')
+    const [settings, setSettings] = useState('on')
     const [count, setCount] = useState<number>(storage.START_VALUE);
     const [error, setError] = useState('')
 
-    useEffect(() => getFromLocalStorage ,[])
-    useEffect( () => {
-        setToLocalStorage()
+    useEffect(() => {
+        let local_storage = localStorage.getItem('counter_settings')
+        let local_settings = localStorage.getItem('settings')
+        if (local_storage) {
+            let storage_get = JSON.parse(local_storage)
+            setStorage(storage_get)
+            setCount(storage_get.START_VALUE)
+        }
+        if (local_settings){
+            setSettings(JSON.parse(local_settings))
+        }
+    }, [])
+    useEffect(()=>{
+        localStorage.setItem('settings', JSON.stringify(settings))
+    }, [settings])
+    useEffect(() => {
+        let local_storage = {
+            START_VALUE: storage.START_VALUE,
+            MAX_VALUE: storage.MAX_VALUE,
+            STEP: storage.STEP
+        }
+        localStorage.setItem('counter_settings', JSON.stringify(local_storage))
     }, [storage])
 
     const changeSettings = (start: number, max: number, step: number) => {
-        if (step > 0 && start < max) {
             setStorage({
                 MAX_VALUE: max,
                 START_VALUE: start,
                 STEP: step
             })
             setCount(start)
-            setError("")
-        } else {
-            setError('Incorrect value!')
-        }
-
+            setError('')
     }
     const incCounter = () => {
         if (count < storage.MAX_VALUE) {
@@ -57,22 +74,6 @@ export const Counter = () => {
         setSettings('off')
     }
 
-    const setToLocalStorage = () => {
-        let local_storage = {
-            START_VALUE: storage.START_VALUE,
-            MAX_VALUE: storage.MAX_VALUE,
-            STEP: storage.STEP
-        }
-        localStorage.setItem('counter_settings', JSON.stringify(local_storage))
-    }
-    const getFromLocalStorage = () => {
-        let local_storage = localStorage.getItem('counter_settings')
-        if (local_storage) {
-            let storage_get = JSON.parse(local_storage)
-            setStorage(storage_get)
-            console.log(storage_get)
-        }
-    }
 
     return (
         <div className={s.counter}>
@@ -80,11 +81,11 @@ export const Counter = () => {
             <Button name={'hide settings'} callback={onClickHideSettings} disabled={settings === 'off'}/>
             {settings === 'on' &&
                 <SettingsCounter
-                    max={storage.MAX_VALUE}
-                    start={storage.START_VALUE}
-                    step={storage.STEP}
+                    storage={storage}
                     changeSettings={changeSettings}
-                    setSettings={setSettings}/>
+                    setSettings={setSettings}
+                    setError={setError}
+                    error={error}/>
             }
             <Board
                 count={count}

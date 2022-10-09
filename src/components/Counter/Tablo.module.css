@@ -1,8 +1,8 @@
 .container{
     margin: 10px auto;
-    background-color: dodgerblue;
+    background-color: #282c34;
     /*width: 300px;*/
-    border: 2px solid #282c34;
+    border: 2px solid dodgerblue;
     border-radius: 5px;
     align-items: center;
     padding: 5px;
@@ -17,12 +17,12 @@
 }
 .title{
     text-align: center;
-    color: #282c34;
+    color: dodgerblue;
 }
 .titleEnd{
-    color: red;
+    color: #a70000;
 }
 .errorMessage{
-    color: red;
+    color: #a70000;
 }
 
