@@ -18,8 +18,14 @@
     color: dodgerblue;
     font-size: 48px;
 }
+.error{
+    color: #a70000;
+    font-size: 24px;
+}
 .ControlPanel{
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .settings{
     display: flex;
