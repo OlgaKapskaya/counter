@@ -5,6 +5,7 @@ type BoardProps = {
     count: number
     max: number
     min: number
+    error?: string
 }
 export const Board = (props: BoardProps) => {
     let titleStyle = props.count < props.max ? s.title : s.titleEnd
@@ -12,7 +13,8 @@ export const Board = (props: BoardProps) => {
 
     return (
         <div className={containerStyle}>
-            <h1 className={titleStyle}>{props.count}</h1>
+            {props.error !== "" ? <h1 className={s.errorMessage}>{props.error}</h1>
+                : <h1 className={titleStyle}>{props.count}</h1>}
         </div>
     )
 }

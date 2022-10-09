@@ -8,6 +8,7 @@ type SettingsCounterProps = {
     step: number
     changeSettings: (start: number, max: number, step: number) => void
     setSettings: (status: 'on' | 'off') => void
+    error?: string
 }
 export const SettingsCounter = (props: SettingsCounterProps) => {
     const [start, setStart] = useState(props.start)
@@ -25,8 +26,10 @@ export const SettingsCounter = (props: SettingsCounterProps) => {
     }
     const onClickSaveButton = () => {
         props.changeSettings(start, max, step)
-        props.setSettings('off')
+        //props.setSettings('off')
     }
+
+
     return (
         <div className={s.container}>
             <label>Set start value:</label>
@@ -47,7 +50,7 @@ export const SettingsCounter = (props: SettingsCounterProps) => {
                 className={s.input}
                 value={step}
                 onChange={onChangeStepHandler}/>
-            <Button name={'SAVE'} callback={onClickSaveButton} disabled={false}/>
+            <Button name={'SAVE'} callback={onClickSaveButton} disabled={props.error === ""}/>
         </div>
     )
 }

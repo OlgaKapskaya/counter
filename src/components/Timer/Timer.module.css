@@ -11,6 +11,8 @@
     align-items: center;
     justify-content: center;
     height: 300px;
+    flex-direction: column;
+
 }
 .time{
     color: dodgerblue;
