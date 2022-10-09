@@ -7,3 +7,9 @@ body {
   background: #282c34;
   height: 100%;
 }
+header{
+  background: dodgerblue;
+}
+footer{
+  color: dodgerblue;
+}

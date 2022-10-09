@@ -8,59 +8,79 @@ export const Timer = () => {
     const [minutes, setMinutes] = useState(0);
     const [seconds, setSeconds] = useState(0);
     const [time, setTime] = useState(0)
+    const [timerSettings, setTimerSettings] = useState(true)
 
     const timerOut = () => {
-        setTime(time - 1000)
-        setSeconds(seconds - 1)
+        if (time > 0) {
+            if (minutes > 0) {
+                setMinutes(Math.floor((time - 1000) / 60000))
+                setTime(time - 1000)
+                if (seconds === 0) {
+                    setSeconds(59)
+                } else {
+                    setSeconds(seconds - 1)
+                }
+            } else {
+                setSeconds(seconds - 1)
+                setTime(time - 1000)
+            }
+        } else {
+            setTimerSettings(true)
+        }
+
     }
     useEffect(() => {
         const interval = setInterval(
-            () => setTime(time - 1000),
+            () => timerOut(),
             1000,
         );
-
         return () => clearInterval(interval);
-    }, []);
-
+    }, [time]);
 
     const startTimer = () => {
         let timeout = minutes * 60 * 1000 + seconds * 1000;
         setTime(timeout);
+        setTimerSettings(false)
     }
 
     const onChangeMinutesHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        if (Number(event.currentTarget.value) >= 0 && Number(event.currentTarget.value) <= 60) {
-            setMinutes(Number(event.currentTarget.value))
-        }
+        setMinutes(Number(event.currentTarget.value))
     }
     const onChangeSecondsHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        if (Number(event.currentTarget.value) >= 0 && Number(event.currentTarget.value) <= 60) {
-            setSeconds(Number(event.currentTarget.value))
-        }
+        setSeconds(Number(event.currentTarget.value))
     }
 
     const stopTimer = () => {
         setTime(0)
         setSeconds(0)
         setMinutes(0)
+        setTimerSettings(true)
     }
 
     return (
         <div className={s.timer}>
-
-            <div className={s.settings}>
-                <label>SET MINUTES</label>
-                <input className={s.input} type={'number'} value={minutes} onChange={onChangeMinutesHandler}/>
-                <label>SET SECONDS </label>
-                <input className={s.input} type={'number'} value={seconds} onChange={onChangeSecondsHandler}/>
-            </div>
+            {
+                timerSettings &&
+                <div className={s.settings}>
+                    <label>SET MINUTES</label>
+                    <input className={s.input}
+                           type={'range'}
+                           min={0} max={59} step={1}
+                           value={minutes}
+                           onChange={onChangeMinutesHandler}/>
+                    <label>SET SECONDS </label>
+                    <input className={s.input}
+                           type={'range'}
+                           min={0} max={59} step={1}
+                           value={seconds}
+                           onChange={onChangeSecondsHandler}/>
+                </div>
+            }
 
             <div className={s.display}>
                 <h1 className={s.time}>
                     {minutes < 10 ? `0${minutes}` : minutes} : {seconds < 10 ? `0${seconds}` : seconds}
                 </h1>
-                <div>{time}</div>
-
             </div>
             <div className={s.ControlPanel}>
                 <Button name={'START'} callback={startTimer} disabled={false}/>

@@ -16,6 +16,7 @@
 }
 .time{
     color: dodgerblue;
+    font-size: 48px;
 }
 .ControlPanel{
     display: flex;

@@ -1,13 +1,27 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import {Counter} from "./components/Counter/Counter";
 import {Timer} from "./components/Timer/Timer";
+import {Button} from "./components/Button";
+
+type ShowType = 'counter' | 'timer'
 
 function App() {
+    const [show, setShow] = useState<ShowType>('counter')
     return (
         <div className={'App'}>
-            <Counter/>
-            {/*<Timer/>*/}
+            <header>
+                <Button name={'COUNTER'} callback={() => setShow('counter')} disabled={show === 'counter'}/>
+                <Button name={'TIMER'} callback={() => setShow('timer')} disabled={show === 'timer'}/>
+            </header>
+            <body>
+                {show === 'counter' && <Counter/>}
+                {show === 'timer' && <Timer/>}
+            </body>
+            <footer>
+                {/*<div>Made by OLGA KAPSKAYA</div>*/}
+            </footer>
+
         </div>
     );
 }
