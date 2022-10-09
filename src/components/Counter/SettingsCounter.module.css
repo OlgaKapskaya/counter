@@ -10,6 +10,7 @@
 }
 .input{
     background-color: #282c34;
+    text-align: center;
     width: 200px;
     color: dodgerblue;
     padding: 5px 5px 5px 10px;
@@ -19,6 +20,7 @@
 }
 .errorInput{
     background-color: #a70000;
+    text-align: center;
     width: 200px;
     color: #282c34;
     padding: 5px 5px 5px 10px;

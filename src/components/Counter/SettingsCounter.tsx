@@ -51,24 +51,25 @@ export const SettingsCounter = (props: SettingsCounterProps) => {
     const inputStepClass = step < 1 ? s.errorInput : s.input
     return (
         <div className={s.container}>
-            <label>Set start value:</label>
-            <input
-                type={'number'}
-                className={inputStartClass}
-                value={start}
-                onChange={onChangeStartHandler}/>
-            <label>Set max value:</label>
-            <input
-                type={'number'}
-                className={inputMaxClass}
-                value={max}
-                onChange={onChangeMaxHandler}/>
-            <label>Set step:</label>
-            <input
-                type={'number'}
-                className={inputStepClass}
-                value={step}
-                onChange={onChangeStepHandler}/>
+                <label>Set start value:</label>
+                <input
+                    type={'number'}
+                    className={inputStartClass}
+                    value={start}
+                    onChange={onChangeStartHandler}/>
+                <label>Set max value:</label>
+                <input
+                    type={'number'}
+                    className={inputMaxClass}
+                    value={max}
+                    onChange={onChangeMaxHandler}/>
+                <label>Set step:</label>
+                <input
+                    type={'number'}
+                    className={inputStepClass}
+                    value={step}
+                    onChange={onChangeStepHandler}/>
+
             <div className={s.panel} >
                 <Button name={'SAVE'} callback={onClickSaveButton} disabled={props.error !== ""}/>
                 <Button name={'SET DEFAULT'} callback={onClickDefaultButton} disabled={false}/>
