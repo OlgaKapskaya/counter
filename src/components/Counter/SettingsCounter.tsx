@@ -22,7 +22,7 @@ export const SettingsCounter = (props: SettingsCounterProps) => {
         setStep(props.storage.STEP)
     }, [props.storage])
 
-    if (start >= max || step < 1) {
+    if (start >= max || step < 1 || step > (max - start)) {
         props.setError('Incorrect value!')
     } else {
         props.setError("")
@@ -48,7 +48,8 @@ export const SettingsCounter = (props: SettingsCounterProps) => {
     }
     const inputStartClass = start >= max ? s.errorInput : s.input
     const inputMaxClass = max <= start ? s.errorInput : s.input
-    const inputStepClass = step < 1 ? s.errorInput : s.input
+    const inputStepClass = (step < 1 || step > (max - start)) ? s.errorInput : s.input
+
     return (
         <div className={s.container}>
                 <label>Set start value:</label>
