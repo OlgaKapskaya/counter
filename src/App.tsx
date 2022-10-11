@@ -14,10 +14,10 @@ function App() {
                 <Button name={'COUNTER'} callback={() => setShow('counter')} disabled={show === 'counter'}/>
                 <Button name={'TIMER'} callback={() => setShow('timer')} disabled={show === 'timer'}/>
             </header>
-            <body>
+            <div>
                 {show === 'counter' && <Counter/>}
                 {show === 'timer' && <Timer/>}
-            </body>
+            </div>
             <footer>
                 {/*<div>Made by OLGA KAPSKAYA</div>*/}
             </footer>

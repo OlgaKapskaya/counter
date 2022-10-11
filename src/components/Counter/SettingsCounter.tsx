@@ -5,73 +5,77 @@ import {StorageType} from "./Counter";
 
 type SettingsCounterProps = {
     storage: StorageType
-    changeSettings: (start: number, max: number, step: number) => void
+    changeSettings: (newStorage: StorageType) => void
     setSettings: (status: 'on' | 'off') => void
     setError: (text: string) => void
-    error?:string
+    error: string
 
 }
 export const SettingsCounter = (props: SettingsCounterProps) => {
-    const [start, setStart] = useState(props.storage.START_VALUE)
-    const [max, setMax] = useState(props.storage.MAX_VALUE)
-    const [step, setStep] = useState(props.storage.STEP)
-
+    const [newStorage, setNewStorage] = useState(props.storage)
     useEffect(() => {
-        setStart(props.storage.START_VALUE)
-        setMax(props.storage.MAX_VALUE)
-        setStep(props.storage.STEP)
+        setNewStorage(props.storage)
     }, [props.storage])
+    useEffect(() => {
+        if (newStorage.START_VALUE >= newStorage.MAX_VALUE
+            || newStorage.STEP < 1
+            || newStorage.STEP > (newStorage.MAX_VALUE - newStorage.START_VALUE)
+            || (newStorage.MAX_VALUE - newStorage.START_VALUE) % newStorage.STEP !== 0
+        ) {
+            props.setError('Incorrect value!')
+        } else {
+            props.setError("")
+        }
+    }, [newStorage, props.error, props])
 
-    if (start >= max || step < 1 || step > (max - start)) {
-        props.setError('Incorrect value!')
-    } else {
-        props.setError("")
-    }
     const onChangeStartHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        setStart(Number(event.currentTarget.value))
+        setNewStorage({...newStorage, START_VALUE: Number(event.currentTarget.value)})
     }
     const onChangeMaxHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        setMax(Number(event.currentTarget.value))
+        setNewStorage({...newStorage, MAX_VALUE: Number(event.currentTarget.value)})
     }
     const onChangeStepHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        setStep(Number(event.currentTarget.value))
+        setNewStorage({...newStorage, STEP: Number(event.currentTarget.value)})
 
     }
     const onClickSaveButton = () => {
-        props.changeSettings(start, max, step)
+        props.changeSettings(newStorage)
     }
     const onClickDefaultButton = () => {
-        setStep(1)
-        setMax(5)
-        setStart(0)
-        props.changeSettings(0, 5, 1)
+        let newStorageValue = {
+            MAX_VALUE: 5,
+            START_VALUE: 0,
+            STEP: 1
+        }
+        props.changeSettings(newStorageValue)
     }
-    const inputStartClass = start >= max ? s.errorInput : s.input
-    const inputMaxClass = max <= start ? s.errorInput : s.input
-    const inputStepClass = (step < 1 || step > (max - start)) ? s.errorInput : s.input
+
+    const inputStartClass = newStorage.START_VALUE >= newStorage.MAX_VALUE ? s.errorInput : s.input
+    const inputMaxClass = newStorage.MAX_VALUE <= newStorage.START_VALUE ? s.errorInput : s.input
+    const inputStepClass = (newStorage.STEP < 1) || (newStorage.MAX_VALUE - newStorage.START_VALUE) % newStorage.STEP !== 0 ? s.errorInput : s.input
 
     return (
         <div className={s.container}>
-                <label>Set start value:</label>
-                <input
-                    type={'number'}
-                    className={inputStartClass}
-                    value={start}
-                    onChange={onChangeStartHandler}/>
-                <label>Set max value:</label>
-                <input
-                    type={'number'}
-                    className={inputMaxClass}
-                    value={max}
-                    onChange={onChangeMaxHandler}/>
-                <label>Set step:</label>
-                <input
-                    type={'number'}
-                    className={inputStepClass}
-                    value={step}
-                    onChange={onChangeStepHandler}/>
+            <label>Set start value:</label>
+            <input
+                type={'number'}
+                className={inputStartClass}
+                value={newStorage.START_VALUE}
+                onChange={onChangeStartHandler}/>
+            <label>Set max value:</label>
+            <input
+                type={'number'}
+                className={inputMaxClass}
+                value={newStorage.MAX_VALUE}
+                onChange={onChangeMaxHandler}/>
+            <label>Set step:</label>
+            <input
+                type={'number'}
+                className={inputStepClass}
+                value={newStorage.STEP}
+                onChange={onChangeStepHandler}/>
 
-            <div className={s.panel} >
+            <div className={s.panel}>
                 <Button name={'SAVE'} callback={onClickSaveButton} disabled={props.error !== ""}/>
                 <Button name={'SET DEFAULT'} callback={onClickDefaultButton} disabled={false}/>
             </div>

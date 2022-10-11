@@ -17,7 +17,7 @@ export const Counter = () => {
         MAX_VALUE: 5,
         STEP: 1
     })
-    const [settings, setSettings] = useState('on')
+    const [settings, setSettings] = useState('off')
     const [count, setCount] = useState<number>(storage.START_VALUE);
     const [error, setError] = useState('')
 
@@ -29,11 +29,11 @@ export const Counter = () => {
             setStorage(storage_get)
             setCount(storage_get.START_VALUE)
         }
-        if (local_settings){
+        if (local_settings) {
             setSettings(JSON.parse(local_settings))
         }
     }, [])
-    useEffect(()=>{
+    useEffect(() => {
         localStorage.setItem('settings', JSON.stringify(settings))
     }, [settings])
     useEffect(() => {
@@ -45,15 +45,13 @@ export const Counter = () => {
         localStorage.setItem('counter_settings', JSON.stringify(local_storage))
     }, [storage])
 
-    const changeSettings = (start: number, max: number, step: number) => {
-            setStorage({
-                MAX_VALUE: max,
-                START_VALUE: start,
-                STEP: step
-            })
-            setCount(start)
-            setError('')
+
+    const changeSettings = (newStorage: StorageType) => {
+        setStorage(newStorage)
+        setCount(newStorage.START_VALUE)
+        setError('')
     }
+
     const incCounter = () => {
         if (count < storage.MAX_VALUE) {
             setCount(count + storage.STEP)
@@ -67,18 +65,13 @@ export const Counter = () => {
             setCount(count - storage.STEP)
         }
     }
-    const onClickShowSettings = () => {
-        setSettings('on')
-    }
-    const onClickHideSettings = () => {
-        setSettings('off')
-    }
+
 
 
     return (
         <div className={s.counter}>
-            <Button name={'show settings'} callback={onClickShowSettings} disabled={settings === 'on'}/>
-            <Button name={'hide settings'} callback={onClickHideSettings} disabled={settings === 'off'}/>
+            <Button name={'show settings'} callback={() => setSettings('on')} disabled={settings === 'on'}/>
+            <Button name={'hide settings'} callback={() => setSettings('off')} disabled={settings === 'off'}/>
             {settings === 'on' &&
                 <SettingsCounter
                     storage={storage}
