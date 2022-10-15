@@ -28,9 +28,10 @@
     border: none;
     border-radius: 5px;
 }
-.input::-webkit-outer-spin-button, input::-webkit-inner-spin-button{
 
-}
 .panel{
     margin: 5px;
+}
+label{
+    color: #282c34;
 }

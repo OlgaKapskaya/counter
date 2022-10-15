@@ -1,15 +1,19 @@
 .App {
-  text-align: center;
-  /*background-color: #282c34;*/
+    text-align: center;
+    /*background-color: #282c34;*/
 
 }
+
 body {
-  background: #282c34;
-  height: 100%;
+    background: #282c34;
+    height: 100%;
 }
-header{
-  background: dodgerblue;
+
+header {
+
 }
-footer{
-  color: dodgerblue;
+
+footer {
+    color: dodgerblue;
 }
+

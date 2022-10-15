@@ -1,0 +1,28 @@
+.nav {
+    background: dodgerblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: max-content;
+}
+
+.nav a {
+    background-color: dodgerblue;
+    margin: 5px;
+    padding: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    width: 80px;
+    border-radius: 5px;
+    color: #282c34;
+}
+.nav a:hover {
+    border: 2px solid #282c34;
+}
+
+.nav a.active {
+    text-decoration: none;
+    background-color: #282c34;
+    color: dodgerblue;
+    border: 2px solid #282c34;
+}

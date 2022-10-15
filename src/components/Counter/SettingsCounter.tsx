@@ -56,19 +56,19 @@ export const SettingsCounter = (props: SettingsCounterProps) => {
 
     return (
         <div className={s.container}>
-            <label>Set start value:</label>
+            <label>Enter start value:</label>
             <input
                 type={'number'}
                 className={inputStartClass}
                 value={newStorage.START_VALUE}
                 onChange={onChangeStartHandler}/>
-            <label>Set max value:</label>
+            <label>Enter max value:</label>
             <input
                 type={'number'}
                 className={inputMaxClass}
                 value={newStorage.MAX_VALUE}
                 onChange={onChangeMaxHandler}/>
-            <label>Set step:</label>
+            <label>Enter step:</label>
             <input
                 type={'number'}
                 className={inputStepClass}

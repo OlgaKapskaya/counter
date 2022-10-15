@@ -51,7 +51,6 @@ export const Counter = () => {
         setCount(newStorage.START_VALUE)
         setError('')
     }
-
     const incCounter = () => {
         if (count < storage.MAX_VALUE) {
             setCount(count + storage.STEP)
@@ -65,8 +64,6 @@ export const Counter = () => {
             setCount(count - storage.STEP)
         }
     }
-
-
 
     return (
         <div className={s.counter}>
