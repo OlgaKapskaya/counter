@@ -1,6 +1,7 @@
-import React, {ChangeEvent, useEffect, useMemo, useState} from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
 import s from './Timer.module.css'
 import {Button} from "../Button";
+
 
 
 export const Timer = () => {
@@ -39,7 +40,7 @@ export const Timer = () => {
     }, [time]);
 
     const startTimer = () => {
-        if (minutes !== 0 || seconds!== 0){
+        if (minutes !== 0 || seconds !== 0) {
             let timeout = minutes * 60 * 1000 + seconds * 1000;
             setTime(timeout);
             setTimerSettings(false)
@@ -71,13 +72,13 @@ export const Timer = () => {
             {
                 timerSettings &&
                 <div className={s.settings}>
-                    <label>SET MINUTES</label>
+                    <label className={s.text}>SET MINUTES</label>
                     <input className={s.input}
                            type={'range'}
                            min={0} max={59} step={1}
                            value={minutes}
                            onChange={onChangeMinutesHandler}/>
-                    <label>SET SECONDS </label>
+                    <label className={s.text}>SET SECONDS </label>
                     <input className={s.input}
                            type={'range'}
                            min={0} max={59} step={1}

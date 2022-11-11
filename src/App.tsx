@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
 import {Counter} from "./components/Counter/Counter";
 import {Timer} from "./components/Timer/Timer";
-import {BrowserRouter, Navigate, NavLink, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import {ErrorPage} from "./components/ErrorPage/Error";
 import {Header} from "./components/Header/Header";
 

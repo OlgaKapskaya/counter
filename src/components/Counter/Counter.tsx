@@ -5,12 +5,16 @@ import s from './Counter.module.css'
 import {SettingsCounter} from "./SettingsCounter";
 import {Button} from "../Button";
 
+
+
 export type StorageType = {
     START_VALUE: number
     MAX_VALUE: number
     STEP: number
 }
+
 export const Counter = () => {
+
 
     const [storage, setStorage] = useState<StorageType>({
         START_VALUE: 0,
@@ -19,6 +23,7 @@ export const Counter = () => {
     })
     const [settings, setSettings] = useState('off')
     const [count, setCount] = useState<number>(storage.START_VALUE);
+
     const [error, setError] = useState('')
 
     useEffect(() => {

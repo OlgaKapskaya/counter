@@ -40,3 +40,7 @@
     border: 1px solid dodgerblue;
     border-radius: 5px;
 }
+.text{
+    color: dodgerblue;
+    font-weight: bold;
+}

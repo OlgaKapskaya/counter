@@ -78,6 +78,7 @@ export const SettingsCounter = (props: SettingsCounterProps) => {
             <div className={s.panel}>
                 <Button name={'SAVE'} callback={onClickSaveButton} disabled={props.error !== ""}/>
                 <Button name={'SET DEFAULT'} callback={onClickDefaultButton} disabled={false}/>
+
             </div>
         </div>
     )
